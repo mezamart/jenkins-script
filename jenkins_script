@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Description: Script to install jenkins
+# Author:  Martial and Patricia
+# Date: 06/14/2022
+
+## Install jenkins on centos 7 server
+# Install Java  
+        sudo yum install java-1.8.0-openjdk-devel -y
+# Enable the Jenkins repository
+        sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+        sudo yum install wget -y
+        sudo sed -i 's/gpgcheck=1/gpgcheck=0/g' /etc/yum.repos.d/jenkins.repo
+# Install the latest stable version of Jenkins
+        sudo yum install jenkins -y
+        sudo systemctl start jenkins
+        sudo systemctl status jenkins
+        sudo systemctl enable jenkins
+# Step 4: Adjust the firewall
+        sudo firewall-cmd --permanent --zone=public --add-port=8080/tcp
+        sudo firewall-cmd --reload
+        ## II-  Setting up Jenkins in the browser
+        # Open the jenkins page from the browser
+        echo "Launch your google chrome browser an type your IP address followed by the port number 8080"
+
+# Copy and paste the administrator password        
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+echo "Copy the password and paste it into the Administrator password field in the page you have in the browser. Then click on Continue"
+
+# Install suggested plugins
+echo "Click on the Install suggested plugins"
+echo "Username: utrains"
+echo "Password: school1"
+echo "full name: martial mayas"
+echo "E-mail address:"
+
+# Instance Configuration
+echo "click on Save and Finish"
+echo "Jenkins is now ready for use!"
+echo "Click on Start using Jenkins button"
